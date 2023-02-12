@@ -1,9 +1,9 @@
-import { Button, Input } from "@nextui-org/react";
+import { Button} from "@nextui-org/react";
 import styled from "styled-components";
 
 
 
-export const Form=styled.div`
+export const Form=styled.form`
         display: flex;
     flex-direction: column;
     align-items: flex-start;

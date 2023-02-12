@@ -3,12 +3,11 @@ import { Form } from "./style";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import api from "../../services/api";
-import axios from "axios";
-import { useEffect } from "react";
+
 
 const Register = () => {
   const navigate = useNavigate();
@@ -22,28 +21,28 @@ const Register = () => {
     confirmPassword: yup
       .string()
       .oneOf([yup.ref("password")], "Confirmação deve ser igual a senha"),
-    contact: yup.string().required("Contato obrigatório"),
+    phone: yup.string().required("Contato obrigatório"),
   });
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(formSchema) });
-
+  
   const user = (data) => {
-    console.log(data, "#######");
-    // delete data.passwordConfirm;
-    // api
-    //   .post("/users", data)
-    //   .then((response) => {
-    //     console.log(response);
-    //     toast.success("Cadastro realizado com sucesso!", {autoClose:3000});
-    //     navigate("/login");
-    //   })
-    //   .catch((err) => {
-    //     console.error(err);
-    //     toast.error("Ops! Algo deu errado", {autoClose:3000});
-    //   });
+    // console.log(data.name, "aquiiii #######");  
+    delete data.passwordConfirm;
+    api
+    .post("/users", data)
+    .then((response) => {
+      console.log(response);
+      toast.success("Cadastro realizado com sucesso!", {autoClose:3000});
+      navigate("/login");
+    })
+    .catch((err) => {
+      console.error(err);
+      toast.error("Ops! Algo deu errado", {autoClose:3000});
+    });
   };
 
 
@@ -85,10 +84,10 @@ const Register = () => {
             <Input
               css={{ width: "265px" }}
               labelPlaceholder="Contato"
-              {...register("contact")}
+              {...register("phone")}
             />
 
-            <p>{errors.contact && errors.contact.message}</p>
+            <p>{errors.phone && errors.phone.message}</p>
 
             <div>
               <Button 

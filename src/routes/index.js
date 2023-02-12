@@ -1,10 +1,10 @@
 import{Routes, Route, Navigate} from 'react-router-dom' 
-import Home from '../components/home';
+import Home from '../pages/home';
 
 
-import Login from '../components/Login';
-import Registro from '../components/registro';
-import Dashboard from '../components/dashboard';
+import Login from '../pages/Login';
+import Registro from '../pages/registro';
+import Dashboard from '../pages/dashboard';
 
 
 
